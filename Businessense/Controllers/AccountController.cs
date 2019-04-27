@@ -6,7 +6,6 @@ using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
-using System.Web.Http.ModelBinding;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -166,9 +165,7 @@ namespace Businessense.Controllers
 
             AuthenticationTicket ticket = AccessTokenFormat.Unprotect(model.ExternalAccessToken);
 
-            if (ticket == null || ticket.Identity == null || (ticket.Properties != null
-                && ticket.Properties.ExpiresUtc.HasValue
-                && ticket.Properties.ExpiresUtc.Value < DateTimeOffset.UtcNow))
+            if (ticket?.Identity == null || (ticket.Properties?.ExpiresUtc != null && ticket.Properties.ExpiresUtc.Value < DateTimeOffset.UtcNow))
             {
                 return BadRequest("External login failure.");
             }
@@ -328,7 +325,7 @@ namespace Businessense.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+            ApplicationUser user = new ApplicationUser { UserName = model.Email, Email = model.Email };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
@@ -351,13 +348,13 @@ namespace Businessense.Controllers
                 return BadRequest(ModelState);
             }
 
-            var info = await Authentication.GetExternalLoginInfoAsync();
+            ExternalLoginInfo info = await Authentication.GetExternalLoginInfoAsync();
             if (info == null)
             {
                 return InternalServerError();
             }
 
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+            ApplicationUser user = new ApplicationUser { UserName = model.Email, Email = model.Email };
 
             IdentityResult result = await UserManager.CreateAsync(user);
             if (!result.Succeeded)
@@ -386,10 +383,7 @@ namespace Businessense.Controllers
 
         #region Helpers
 
-        private IAuthenticationManager Authentication
-        {
-            get { return Request.GetOwinContext().Authentication; }
-        }
+        private IAuthenticationManager Authentication => Request.GetOwinContext().Authentication;
 
         private IHttpActionResult GetErrorResult(IdentityResult result)
         {

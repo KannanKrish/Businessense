@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -20,6 +21,9 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <TypeScriptToolsVersion>3.3</TypeScriptToolsVersion>
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -42,92 +46,68 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
-      <HintPath>..\packages\Antlr3.Runtime.3.5.0.3-alpha002\lib\net20\Antlr3.Runtime.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\Antlr3.Runtime.3.5.1\lib\net40-client\Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Kendo.Mvc">
-      <HintPath>..\lib\KENDOUIMVC\2014.3.1411.545\Kendo.Mvc.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.2\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.2\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.Data.Edm, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Data.Edm.5.6.4\lib\net40\Microsoft.Data.Edm.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Microsoft.Data.Edm, Version=5.8.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.Edm.5.8.4\lib\net40\Microsoft.Data.Edm.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Data.OData, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Data.OData.5.6.4\lib\net40\Microsoft.Data.OData.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Microsoft.Data.OData, Version=5.8.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Data.OData.5.8.4\lib\net40\Microsoft.Data.OData.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Microsoft.Owin, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.4.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.4.0.1\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Owin.Security, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.Security.3.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Microsoft.Owin.Security, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.4.0.1\lib\net45\Microsoft.Owin.Security.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.4.0.1\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Owin.Security.Facebook, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.3.0.1\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Microsoft.Owin.Security.Facebook, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.4.0.1\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Owin.Security.Google, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.Security.Google.3.0.1\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Microsoft.Owin.Security.Google, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.4.0.1\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.3.0.1\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.4.0.1\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Owin.Security.OAuth, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.3.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.4.0.1\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Owin.Security.Twitter, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.3.0.1\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Microsoft.Owin.Security.Twitter, Version=4.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.4.0.1\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
-    <Reference Include="System.Spatial, Version=5.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Spatial.5.6.4\lib\net40\System.Spatial.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="System.Spatial, Version=5.8.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Spatial.5.8.4\lib\net40\System.Spatial.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -135,44 +115,34 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Http.OData, Version=5.5.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.OData.5.5.1\lib\net45\System.Web.Http.OData.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="System.Web.Http.OData, Version=5.7.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.OData.5.7.0\lib\net45\System.Web.Http.OData.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Http.Owin, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.2.3\lib\net45\System.Web.Http.Owin.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="System.Web.Http.Owin, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Owin.5.2.7\lib\net45\System.Web.Http.Owin.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.7\lib\net45\System.Web.Http.WebHost.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
@@ -255,8 +225,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap-grid.css" />
+    <Content Include="Content\bootstrap-grid.min.css" />
+    <Content Include="Content\bootstrap-reboot.css" />
+    <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\kendo\2014.3.1411\Black\editor.png" />
@@ -531,7 +503,6 @@
     <Content Include="Content\kendo\2014.3.1411\Uniform\sprite_kpi.png" />
     <Content Include="Content\kendo\2014.3.1411\Uniform\sprite_kpi_2x.png" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\kendo\2014.3.1411\fonts\DejaVu\DejaVuSans-Bold.ttf" />
     <Content Include="Content\kendo\2014.3.1411\fonts\DejaVu\DejaVuSans-BoldOblique.ttf" />
@@ -548,12 +519,7 @@
     <Content Include="Content\kendo\2014.3.1411\fonts\DejaVu\LICENSE" />
     <Content Include="Content\kendo\2014.3.1411\images\kendoui.ttf" />
     <Content Include="Content\kendo\2014.3.1411\images\kendoui.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Content\bootstrap-theme.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
     <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\ResourceModel.cshtml" />
@@ -573,151 +539,54 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
-    <None Include="Scripts\jquery-2.1.4.intellisense.js" />
-    <Content Include="Icon.png" />
+    <Content Include="Scripts\bootstrap.bundle.js" />
+    <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\jquery-2.1.4.js" />
-    <Content Include="Scripts\jquery-2.1.4.min.js" />
-    <Content Include="Scripts\jquery-2.1.4.min.map" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\bootstrap.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
+    <Content Include="Scripts\bootstrap.bundle.js.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bootstrap-reboot.css.map" />
+    <Content Include="Content\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="Scripts\esm\popper-utils.js" />
+    <Content Include="Scripts\esm\popper-utils.min.js" />
+    <Content Include="Scripts\esm\popper.js" />
+    <Content Include="Scripts\esm\popper.min.js" />
+    <Content Include="Scripts\esm\popper.min.js.map" />
+    <Content Include="Scripts\esm\popper.js.map" />
+    <Content Include="Scripts\esm\popper-utils.min.js.map" />
+    <Content Include="Scripts\esm\popper-utils.js.map" />
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\kendo.modernizr.custom.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\angular.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\jquery.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\jszip.min.js" />
-    <None Include="Scripts\kendo\2014.3.1411\kendo.all-vsdoc.js" />
-    <None Include="Scripts\kendo\2014.3.1411\kendo.all.min.intellisense.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.all.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.angular.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.aspnetmvc.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.autocomplete.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.binder.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.button.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.calendar.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.color.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.colorpicker.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.columnmenu.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.columnsorter.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.combobox.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.core.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.data.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.data.odata.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.data.signalr.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.data.xml.min.js" />
-    <None Include="Scripts\kendo\2014.3.1411\kendo.dataviz-vsdoc.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.dataviz.barcode.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.dataviz.chart.funnel.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.dataviz.chart.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.dataviz.chart.polar.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.dataviz.core.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.dataviz.diagram.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.dataviz.gauge.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.dataviz.map.min.js" />
-    <None Include="Scripts\kendo\2014.3.1411\kendo.dataviz.min.intellisense.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.dataviz.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.dataviz.mobile.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.dataviz.qrcode.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.dataviz.sparkline.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.dataviz.stock.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.dataviz.themes.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.dataviz.treemap.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.datepicker.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.datetimepicker.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.dom.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.draganddrop.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.drawing.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.dropdownlist.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.editable.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.editor.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.excel.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.filebrowser.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.filtercell.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.filtermenu.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.fx.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.gantt.list.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.gantt.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.gantt.timeline.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.grid.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.groupable.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.imagebrowser.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.list.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.listview.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.maskedtextbox.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.menu.min.js" />
-    <None Include="Scripts\kendo\2014.3.1411\kendo.mobile-vsdoc.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.mobile.actionsheet.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.mobile.application.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.mobile.button.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.mobile.buttongroup.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.mobile.drawer.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.mobile.listview.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.mobile.loader.min.js" />
-    <None Include="Scripts\kendo\2014.3.1411\kendo.mobile.min.intellisense.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.mobile.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.mobile.modalview.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.mobile.navbar.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.mobile.pane.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.mobile.popover.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.mobile.scroller.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.mobile.scrollview.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.mobile.shim.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.mobile.splitview.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.mobile.switch.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.mobile.tabstrip.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.mobile.view.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.multiselect.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.notification.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.numerictextbox.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.ooxml.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.pager.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.panelbar.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.pdf.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.pivot.configurator.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.pivot.fieldmenu.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.pivotgrid.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.popup.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.progressbar.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.reorderable.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.resizable.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.router.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.scheduler.agendaview.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.scheduler.dayview.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.scheduler.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.scheduler.monthview.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.scheduler.recurrence.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.scheduler.timelineview.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.scheduler.view.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.selectable.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.slider.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.sortable.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.splitter.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.tabstrip.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.timepicker.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.timezones.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.toolbar.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.tooltip.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.touch.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.treelist.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.treeview.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.upload.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.userevents.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.validator.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.view.min.js" />
-    <None Include="Scripts\kendo\2014.3.1411\kendo.web-vsdoc.js" />
-    <None Include="Scripts\kendo\2014.3.1411\kendo.web.min.intellisense.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.web.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.window.min.js" />
-    <Content Include="Scripts\kendo\2014.3.1411\pako_deflate.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Scripts\npm.js" />
+    <Content Include="Scripts\popper-utils.js" />
+    <Content Include="Scripts\popper-utils.min.js" />
+    <Content Include="Scripts\popper.js" />
+    <Content Include="Scripts\popper.min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\umd\popper-utils.js" />
+    <Content Include="Scripts\umd\popper-utils.min.js" />
+    <Content Include="Scripts\umd\popper.js" />
+    <Content Include="Scripts\umd\popper.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -727,7 +596,6 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\Web.config" />
@@ -735,120 +603,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Scripts\kendo\2014.3.1411\jquery.min.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.all.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.angular.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.aspnetmvc.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.autocomplete.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.binder.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.button.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.calendar.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.color.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.colorpicker.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.columnmenu.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.columnsorter.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.combobox.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.core.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.data.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.data.odata.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.data.signalr.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.data.xml.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.dataviz.barcode.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.dataviz.chart.funnel.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.dataviz.chart.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.dataviz.chart.polar.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.dataviz.core.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.dataviz.diagram.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.dataviz.gauge.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.dataviz.map.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.dataviz.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.dataviz.mobile.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.dataviz.qrcode.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.dataviz.sparkline.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.dataviz.stock.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.dataviz.themes.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.dataviz.treemap.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.datepicker.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.datetimepicker.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.dom.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.draganddrop.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.drawing.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.dropdownlist.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.editable.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.editor.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.excel.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.filebrowser.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.filtercell.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.filtermenu.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.fx.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.gantt.list.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.gantt.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.gantt.timeline.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.grid.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.groupable.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.imagebrowser.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.list.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.listview.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.maskedtextbox.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.menu.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.mobile.actionsheet.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.mobile.application.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.mobile.button.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.mobile.buttongroup.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.mobile.drawer.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.mobile.listview.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.mobile.loader.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.mobile.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.mobile.modalview.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.mobile.navbar.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.mobile.pane.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.mobile.popover.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.mobile.scroller.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.mobile.scrollview.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.mobile.shim.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.mobile.splitview.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.mobile.switch.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.mobile.tabstrip.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.mobile.view.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.multiselect.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.notification.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.numerictextbox.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.ooxml.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.pager.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.panelbar.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.pdf.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.pivot.configurator.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.pivot.fieldmenu.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.pivotgrid.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.popup.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.progressbar.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.reorderable.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.resizable.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.router.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.scheduler.agendaview.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.scheduler.dayview.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.scheduler.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.scheduler.monthview.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.scheduler.recurrence.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.scheduler.timelineview.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.scheduler.view.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.selectable.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.slider.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.sortable.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.splitter.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.tabstrip.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.timepicker.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.toolbar.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.tooltip.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.touch.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.treelist.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.treeview.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.upload.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.userevents.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.validator.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.view.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.web.min.js.map" />
-    <Content Include="Scripts\kendo\2014.3.1411\kendo.window.min.js.map" />
     <Content Include="Views\Shared\EditorTemplates\Currency.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
@@ -861,6 +615,15 @@
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Time.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Url.cshtml" />
+    <Content Include="Scripts\umd\popper.min.js.map" />
+    <Content Include="Scripts\umd\popper.js.map" />
+    <Content Include="Scripts\umd\popper-utils.min.js.map" />
+    <Content Include="Scripts\umd\popper-utils.js.map" />
+    <Content Include="Scripts\README.md" />
+    <Content Include="Scripts\popper.min.js.map" />
+    <Content Include="Scripts\popper.js.map" />
+    <Content Include="Scripts\popper-utils.min.js.map" />
+    <Content Include="Scripts\popper-utils.js.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -869,11 +632,18 @@
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
   </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\index.d.ts" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">

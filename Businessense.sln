@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.202
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Businessense", "Businessense\Businessense.csproj", "{5F6C723E-2321-4BF0-B66D-9A67BFFDE758}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiCaller", "WebApiCaller\WebApiCaller.csproj", "{62AC2953-4DDA-4DB6-B15E-3755BB938DEF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebCaller", "WebCaller\WebCaller.csproj", "{8917F8A8-3EA4-443B-9AFA-EA75A99B8924}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,8 +23,15 @@ Global
 		{62AC2953-4DDA-4DB6-B15E-3755BB938DEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62AC2953-4DDA-4DB6-B15E-3755BB938DEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62AC2953-4DDA-4DB6-B15E-3755BB938DEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8917F8A8-3EA4-443B-9AFA-EA75A99B8924}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8917F8A8-3EA4-443B-9AFA-EA75A99B8924}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8917F8A8-3EA4-443B-9AFA-EA75A99B8924}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8917F8A8-3EA4-443B-9AFA-EA75A99B8924}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B2098B42-C360-4E77-A2AB-D747314A6285}
 	EndGlobalSection
 EndGlobal
