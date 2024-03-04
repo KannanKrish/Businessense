@@ -1,4 +1,4 @@
-﻿/// <reference path="jquery-3.3.1.js" />
+﻿/// <reference path="jquery-3.7.1.js" />
 /// <autosync enabled="true" />
 /// <reference path="kendo.modernizr.custom.js" />
 /// <reference path="kendo/2014.3.1411/angular.min.js" />
